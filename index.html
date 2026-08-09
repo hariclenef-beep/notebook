@@ -7,633 +7,444 @@
 <title>Notebook</title>
 
 <style>
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
+    min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f6f8;
-    color: #202124;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* APP */
-
-.app {
-    display: flex;
-    height: 100vh;
-}
-
-/* SIDEBAR */
-
-.sidebar {
-    width: 270px;
-    background: #ffffff;
-    border-right: 1px solid #e4e6eb;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 25px;
-}
-
-.logo-icon {
-    width: 42px;
-    height: 48px;
-    background: #222;
-    border-radius: 6px 6px 4px 4px;
-    position: relative;
-    box-shadow: inset 5px 0 rgba(255,255,255,0.12);
-}
-
-.logo-icon::before {
-    content: "";
-    position: absolute;
-    left: 8px;
-    right: 8px;
-    top: 10px;
-    height: 2px;
-    background: #fff;
-    box-shadow:
-        0 7px #fff,
-        0 14px #fff,
-        0 21px #fff;
-}
-
-.logo-text {
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.new-note {
-    border: none;
-    background: #202124;
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(125, 55, 220, 0.35),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #16052b 0%,
+            #08030f 45%,
+            #020204 100%
+        );
     color: white;
-    padding: 13px;
-    border-radius: 10px;
-    font-size: 15px;
-    cursor: pointer;
-    margin-bottom: 20px;
 }
 
-.new-note:hover {
-    opacity: .9;
-}
+/* =========================
+   NAVBAR
+========================= */
 
-.search {
+.navbar {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #dddfe4;
-    border-radius: 9px;
-    outline: none;
-    margin-bottom: 20px;
-}
+    height: 72px;
 
-.section-title {
-    font-size: 12px;
-    color: #85888f;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-
-.notes-list {
-    overflow-y: auto;
-    flex: 1;
-}
-
-.note-item {
-    padding: 12px;
-    border-radius: 9px;
-    cursor: pointer;
-    margin-bottom: 5px;
-}
-
-.note-item:hover,
-.note-item.active {
-    background: #f0f1f3;
-}
-
-.note-title {
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.note-preview {
-    color: #888;
-    font-size: 12px;
-    margin-top: 4px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* MAIN */
-
-.main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
-
-.topbar {
-    height: 65px;
-    background: white;
-    border-bottom: 1px solid #e4e6eb;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 25px;
+
+    padding: 0 6%;
+
+    background: rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.page-title {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.top-actions {
-    display: flex;
-    gap: 8px;
-}
-
-.top-button {
-    border: none;
-    background: #f1f2f4;
-    padding: 9px 13px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.editor {
-    flex: 1;
-    overflow-y: auto;
-    padding: 45px;
-}
-
-.editor-container {
-    max-width: 900px;
-    margin: auto;
-}
-
-.note-title-input {
-    width: 100%;
-    border: none;
-    background: transparent;
-    outline: none;
-    font-size: 38px;
+.logo {
+    font-size: 27px;
     font-weight: 700;
-    margin-bottom: 20px;
+    letter-spacing: -1px;
 }
 
-.note-content {
-    width: 100%;
-    min-height: 500px;
+.logo span {
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #c58cff
+    );
+
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-button {
     border: none;
-    outline: none;
-    resize: none;
     background: transparent;
-    font-family: Arial, sans-serif;
-    font-size: 17px;
-    line-height: 1.7;
+    color: rgba(255,255,255,0.8);
+
+    padding: 9px 15px;
+    border-radius: 10px;
+
+    cursor: pointer;
+    font-size: 14px;
 }
 
-.empty {
+.nav-button:hover {
+    background: rgba(255,255,255,0.08);
+    color: white;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: calc(100vh - 72px);
+
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    color: #888;
+
+    padding: 60px 20px;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 850px;
+
     text-align: center;
 }
 
-.empty-icon {
-    font-size: 65px;
-    margin-bottom: 15px;
+.hero h1 {
+    font-size: clamp(
+        48px,
+        8vw,
+        88px
+    );
+
+    line-height: 1;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 22px;
+
+    background: linear-gradient(
+        100deg,
+        #ffffff 10%,
+        #d6a7ff 45%,
+        #8d3cff 100%
+    );
+
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
-/* MOBILE */
+.hero p {
+    max-width: 600px;
 
-.mobile-menu {
-    display: none;
+    margin: 0 auto 35px;
+
+    color: rgba(255,255,255,0.65);
+
+    font-size: 18px;
+    line-height: 1.6;
 }
 
-@media (max-width: 700px) {
+/* =========================
+   BUTTONS
+========================= */
 
-    .sidebar {
-        position: fixed;
-        left: -280px;
-        top: 0;
-        bottom: 0;
-        z-index: 10;
-        transition: .25s;
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+.primary {
+    border: none;
+
+    padding: 14px 25px;
+
+    border-radius: 13px;
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    background: linear-gradient(
+        135deg,
+        #8d3cff,
+        #5b19a9
+    );
+
+    box-shadow:
+        0 10px 30px rgba(117, 40, 220, 0.25);
+}
+
+.primary:hover {
+    transform: translateY(-2px);
+}
+
+.secondary {
+    border: 1px solid rgba(255,255,255,0.13);
+
+    padding: 14px 25px;
+
+    border-radius: 13px;
+
+    color: white;
+
+    font-size: 15px;
+
+    background: rgba(255,255,255,0.05);
+
+    backdrop-filter: blur(10px);
+
+    cursor: pointer;
+}
+
+.secondary:hover {
+    background: rgba(255,255,255,0.09);
+}
+
+/* =========================
+   PREVIEW
+========================= */
+
+.preview {
+    margin: 65px auto 0;
+
+    max-width: 720px;
+
+    height: 260px;
+
+    border-radius: 22px;
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.08),
+            rgba(255,255,255,0.025)
+        );
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.45);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.preview::before {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    background: #8b3dff;
+
+    filter: blur(120px);
+
+    opacity: .18;
+
+    top: -120px;
+    left: -80px;
+}
+
+.preview-content {
+    position: relative;
+
+    width: 80%;
+
+    text-align: left;
+}
+
+.preview-line {
+    height: 9px;
+
+    background: rgba(255,255,255,0.12);
+
+    border-radius: 20px;
+
+    margin: 13px 0;
+}
+
+.preview-line.short {
+    width: 55%;
+}
+
+.preview-line.medium {
+    width: 75%;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding: 25px;
+
+    color: rgba(255,255,255,0.35);
+
+    font-size: 12px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+    .navbar {
+        height: 64px;
+        padding: 0 20px;
     }
 
-    .sidebar.open {
-        left: 0;
-    }
-
-    .mobile-menu {
-        display: block;
-        border: none;
-        background: transparent;
+    .logo {
         font-size: 23px;
-        cursor: pointer;
-        margin-right: 10px;
     }
 
-    .topbar {
-        padding: 0 15px;
-    }
-
-    .editor {
-        padding: 25px 18px;
-    }
-
-    .note-title-input {
-        font-size: 30px;
-    }
-
-    .note-content {
-        font-size: 16px;
-    }
-
-    .top-actions {
+    .nav-buttons {
         display: none;
     }
+
+    .hero {
+        min-height: calc(100vh - 64px);
+
+        padding: 45px 18px;
+    }
+
+    .hero h1 {
+        font-size: 55px;
+        letter-spacing: -3px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .primary,
+    .secondary {
+        width: 100%;
+    }
+
+    .preview {
+        height: 190px;
+        margin-top: 45px;
+        border-radius: 18px;
+    }
+
+    .preview-content {
+        width: 82%;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<header class="navbar">
 
-    <!-- SIDEBAR -->
+    <div class="logo">
+        <span>Notebook</span>
+    </div>
 
-    <aside class="sidebar" id="sidebar">
+    <div class="nav-buttons">
 
-        <div class="logo">
-            <div class="logo-icon"></div>
-            <div class="logo-text">Notebook</div>
-        </div>
-
-        <button class="new-note" onclick="createNote()">
-            + Nova nota
+        <button class="nav-button">
+            Início
         </button>
 
-        <input
-            class="search"
-            id="search"
-            placeholder="Pesquisar notas..."
-            oninput="searchNotes()"
-        >
+        <button class="nav-button">
+            Explorar
+        </button>
 
-        <div class="section-title">
-            Minhas notas
-        </div>
+        <button class="nav-button">
+            Entrar
+        </button>
 
-        <div class="notes-list" id="notesList"></div>
+    </div>
 
-    </aside>
+</header>
 
-    <!-- MAIN -->
 
-    <main class="main">
+<main class="hero">
 
-        <header class="topbar">
+    <div class="hero-content">
 
-            <div style="display:flex;align-items:center;">
+        <h1>
+            Notebook
+        </h1>
 
-                <button
-                    class="mobile-menu"
-                    onclick="toggleSidebar()">
-                    ☰
-                </button>
+        <p>
+            O teu espaço para criar, partilhar
+            e descobrir novas ideias.
+        </p>
 
-                <div class="page-title" id="topTitle">
-                    Notebook
-                </div>
+        <div class="buttons">
 
-            </div>
+            <button class="primary">
+                Começar
+            </button>
 
-            <div class="top-actions">
-
-                <button
-                    class="top-button"
-                    onclick="saveCurrentNote()">
-                    💾 Guardar
-                </button>
-
-                <button
-                    class="top-button"
-                    onclick="deleteCurrentNote()">
-                    🗑️
-                </button>
-
-            </div>
-
-        </header>
-
-        <section class="editor" id="editor">
-
-            <div class="empty">
-
-                <div>
-
-                    <div class="empty-icon">📓</div>
-
-                    <h2>Bem-vindo à Notebook</h2>
-
-                    <p style="margin-top:8px;">
-                        Cria uma nota para começar.
-                    </p>
-
-                    <button
-                        class="new-note"
-                        style="margin-top:20px;"
-                        onclick="createNote()">
-                        + Criar primeira nota
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-</div>
-
-<script>
-
-let notes = JSON.parse(localStorage.getItem("notebook_notes")) || [];
-
-let currentNote = null;
-
-
-/* GUARDAR */
-
-function saveNotes() {
-    localStorage.setItem(
-        "notebook_notes",
-        JSON.stringify(notes)
-    );
-}
-
-
-/* CRIAR NOTA */
-
-function createNote() {
-
-    const note = {
-        id: Date.now(),
-        title: "Nova nota",
-        content: ""
-    };
-
-    notes.unshift(note);
-
-    saveNotes();
-
-    currentNote = note.id;
-
-    renderNotes();
-
-    openNote(note.id);
-}
-
-
-/* MOSTRAR NOTAS */
-
-function renderNotes() {
-
-    const list = document.getElementById("notesList");
-
-    list.innerHTML = "";
-
-    notes.forEach(note => {
-
-        const item = document.createElement("div");
-
-        item.className =
-            "note-item " +
-            (note.id === currentNote ? "active" : "");
-
-        item.onclick = () => openNote(note.id);
-
-        item.innerHTML = `
-            <div class="note-title">
-                ${escapeHTML(note.title)}
-            </div>
-
-            <div class="note-preview">
-                ${escapeHTML(note.content || "Nota vazia")}
-            </div>
-        `;
-
-        list.appendChild(item);
-    });
-}
-
-
-/* ABRIR NOTA */
-
-function openNote(id) {
-
-    currentNote = id;
-
-    const note = notes.find(n => n.id === id);
-
-    if (!note) return;
-
-    document.getElementById("topTitle").textContent =
-        note.title;
-
-    document.getElementById("editor").innerHTML = `
-
-        <div class="editor-container">
-
-            <input
-                class="note-title-input"
-                id="noteTitle"
-                value="${escapeHTML(note.title)}"
-                placeholder="Título"
-            >
-
-            <textarea
-                class="note-content"
-                id="noteContent"
-                placeholder="Começa a escrever..."
-            >${escapeHTML(note.content)}</textarea>
+            <button class="secondary">
+                Explorar
+            </button>
 
         </div>
 
-    `;
 
-    document.getElementById("noteTitle")
-        .addEventListener("input", updateCurrentNote);
+        <div class="preview">
 
-    document.getElementById("noteContent")
-        .addEventListener("input", updateCurrentNote);
+            <div class="preview-content">
 
-    renderNotes();
+                <div class="preview-line"></div>
 
-    if (window.innerWidth <= 700) {
-        document.getElementById("sidebar")
-            .classList.remove("open");
-    }
-}
+                <div class="preview-line medium"></div>
 
+                <div class="preview-line short"></div>
 
-/* ATUALIZAR */
+                <div class="preview-line"></div>
 
-function updateCurrentNote() {
-
-    const note = notes.find(n => n.id === currentNote);
-
-    if (!note) return;
-
-    note.title =
-        document.getElementById("noteTitle").value ||
-        "Nova nota";
-
-    note.content =
-        document.getElementById("noteContent").value;
-
-    document.getElementById("topTitle").textContent =
-        note.title;
-
-    saveNotes();
-
-    renderNotes();
-}
-
-
-/* GUARDAR */
-
-function saveCurrentNote() {
-
-    updateCurrentNote();
-
-    alert("Nota guardada!");
-}
-
-
-/* APAGAR */
-
-function deleteCurrentNote() {
-
-    if (currentNote === null) return;
-
-    const confirmDelete =
-        confirm("Queres apagar esta nota?");
-
-    if (!confirmDelete) return;
-
-    notes =
-        notes.filter(n => n.id !== currentNote);
-
-    currentNote = null;
-
-    saveNotes();
-
-    renderNotes();
-
-    document.getElementById("topTitle")
-        .textContent = "Notebook";
-
-    document.getElementById("editor").innerHTML = `
-
-        <div class="empty">
-
-            <div>
-
-                <div class="empty-icon">📓</div>
-
-                <h2>Nota apagada</h2>
-
-                <p style="margin-top:8px;">
-                    Cria uma nova nota para continuar.
-                </p>
-
-                <button
-                    class="new-note"
-                    style="margin-top:20px;"
-                    onclick="createNote()">
-                    + Nova nota
-                </button>
+                <div class="preview-line medium"></div>
 
             </div>
 
         </div>
-    `;
-}
+
+    </div>
+
+</main>
 
 
-/* PESQUISA */
+<footer>
 
-function searchNotes() {
+    Notebook
 
-    const query =
-        document.getElementById("search")
-        .value.toLowerCase();
-
-    const items =
-        document.querySelectorAll(".note-item");
-
-    items.forEach((item, index) => {
-
-        const note = notes[index];
-
-        const text =
-            (note.title + " " + note.content)
-            .toLowerCase();
-
-        item.style.display =
-            text.includes(query)
-            ? "block"
-            : "none";
-    });
-}
-
-
-/* MENU MOBILE */
-
-function toggleSidebar() {
-
-    document.getElementById("sidebar")
-        .classList.toggle("open");
-}
-
-
-/* SEGURANÇA HTML */
-
-function escapeHTML(text) {
-
-    return String(text)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-
-/* INICIAR */
-
-renderNotes();
-
-</script>
+</footer>
 
 </body>
 </html>
