@@ -7,8 +7,6 @@
 <title>Notebook</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -16,172 +14,163 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background:
-        radial-gradient(circle at top left, rgba(160, 60, 255, .18), transparent 30%),
-        #080808;
-    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #12001f, #050008 65%);
+    color: white;
     min-height: 100vh;
-}
-
-button,
-input,
-textarea,
-select {
-    font-family: inherit;
 }
 
 button {
-    cursor: pointer;
+    font-family: inherit;
 }
-
-/* APP */
 
 .app {
+    max-width: 600px;
+    margin: auto;
     min-height: 100vh;
-    padding-bottom: 90px;
+    padding-bottom: 75px;
 }
 
-/* HEADER */
+/* CABEÇALHO */
 
 .header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    height: 72px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 22px;
-    background: rgba(8,8,8,.82);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,.06);
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(8, 0, 15, 0.88);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .logo {
-    font-size: 25px;
-    font-weight: 800;
-    letter-spacing: -1.4px;
-    background: linear-gradient(90deg,#e66aff,#8d3dff,#ffffff);
+    font-size: 29px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    background: linear-gradient(90deg, #c77dff, #ffffff);
     -webkit-background-clip: text;
-    background-clip: text;
     color: transparent;
 }
 
-.logo small {
-    display: block;
-    font-size: 8px;
-    letter-spacing: 3px;
-    color: #888;
-    background: none;
-    -webkit-text-fill-color: #888;
-    margin-top: -2px;
+.header-icon {
+    font-size: 23px;
+    cursor: pointer;
 }
 
-.header-actions {
-    display: flex;
-    gap: 10px;
+/* CONTEÚDO */
+
+.content {
+    padding: 18px 12px;
 }
 
-.icon-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 14px;
-    border: 1px solid #272727;
-    background: #141414;
+.welcome {
+    margin-bottom: 20px;
+}
+
+.welcome h1 {
+    font-size: 24px;
+}
+
+.welcome p {
+    color: #aaa;
+    margin-top: 5px;
+}
+
+/* CRIAR PUBLICAÇÃO */
+
+.create {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
+    padding: 15px;
+    margin-bottom: 18px;
+}
+
+.create textarea {
+    width: 100%;
+    height: 70px;
+    resize: none;
+    border: none;
+    outline: none;
+    background: transparent;
     color: white;
-    font-size: 19px;
+    font-size: 15px;
 }
 
-/* MAIN */
-
-.main {
-    width: min(700px, 100%);
-    margin: auto;
-    padding: 20px 15px;
+.create textarea::placeholder {
+    color: #888;
 }
 
-/* CATEGORIES */
-
-.categories {
+.create-bottom {
     display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding-bottom: 15px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.categories::-webkit-scrollbar {
+.upload {
+    cursor: pointer;
+    color: #c77dff;
+    font-size: 14px;
+}
+
+.upload input {
     display: none;
 }
 
-.category {
-    white-space: nowrap;
-    padding: 10px 17px;
-    border-radius: 22px;
-    border: 1px solid #282828;
-    background: #141414;
-    color: #999;
-    font-weight: 600;
-}
-
-.category.active {
+.post-button {
+    border: none;
+    padding: 9px 18px;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #8b2cff, #c45cff);
     color: white;
-    border-color: #a83dff;
-    background: linear-gradient(135deg,#a83dff,#6822ad);
-    box-shadow: 0 5px 25px rgba(154,50,255,.25);
+    font-weight: bold;
+    cursor: pointer;
 }
 
-/* POST */
+/* PUBLICAÇÕES */
 
 .post {
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 18px;
     margin-bottom: 18px;
-    border: 1px solid #242424;
-    background: rgba(18,18,18,.92);
-    border-radius: 20px;
     overflow: hidden;
 }
 
-.post-header {
+.post-top {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 15px;
+    padding: 14px;
+    gap: 10px;
 }
 
 .avatar {
-    width: 43px;
-    height: 43px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
+    background: linear-gradient(135deg, #8b2cff, #e05cff);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg,#c64cff,#5420a8);
-    font-weight: 800;
-}
-
-.user-info {
-    flex: 1;
+    font-weight: bold;
 }
 
 .username {
-    font-weight: 700;
+    font-weight: bold;
 }
 
 .time {
+    color: #777;
     font-size: 12px;
-    color: #777;
-    margin-top: 3px;
-}
-
-.post-menu {
-    color: #777;
-    font-size: 20px;
 }
 
 .post-text {
     padding: 0 15px 15px;
     line-height: 1.5;
-    color: #e8e8e8;
 }
 
 .post-media {
@@ -189,98 +178,392 @@ button {
     max-height: 600px;
     object-fit: cover;
     display: block;
-    background: #050505;
 }
 
-.post-actions {
+.actions {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    gap: 20px;
     padding: 13px 15px;
+    font-size: 23px;
 }
 
-.action {
-    border: none;
-    background: transparent;
-    color: #aaa;
-    font-size: 21px;
-    padding: 5px;
-}
-
-.action.liked {
-    color: #ff4d91;
+.actions span {
+    cursor: pointer;
 }
 
 .likes {
-    font-size: 13px;
-    color: #999;
-    padding: 0 15px 12px;
+    padding: 0 15px 14px;
+    font-size: 14px;
 }
 
-/* CREATE */
+/* MENU INFERIOR */
 
-.create-box {
-    background: linear-gradient(145deg,#171017,#101010);
-    border: 1px solid #292029;
-    border-radius: 20px;
-    padding: 17px;
-    margin-bottom: 20px;
+.bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 65px;
+    background: rgba(8,0,15,0.94);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 20;
 }
 
-.create-top {
+.bottom button {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.bottom button.active {
+    color: #c77dff;
+}
+
+/* PERFIL */
+
+.profile {
+    display: none;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+.profile-avatar {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    margin: auto;
+    background: linear-gradient(135deg,#7928ff,#e45cff);
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    font-size: 34px;
+    font-weight: bold;
 }
 
-.create-input {
-    flex: 1;
-    border: 1px solid #292929;
-    background: #101010;
-    color: #aaa;
-    padding: 13px 16px;
-    border-radius: 25px;
-    text-align: left;
+.profile h2 {
+    margin-top: 15px;
 }
 
-.create-tools {
-    display: flex;
-    gap: 9px;
-    margin-top: 13px;
+.profile p {
+    color: #999;
+    margin-top: 5px;
 }
 
-.tool {
-    flex: 1;
-    padding: 10px;
-    border-radius: 12px;
-    border: 1px solid #292929;
-    background: #131313;
-    color: #bbb;
+.edit {
+    margin-top: 18px;
+    padding: 10px 25px;
+    border-radius: 20px;
+    border: 1px solid #7040a8;
+    background: transparent;
+    color: white;
 }
 
-/* EMPTY */
+/* RESPONSIVO */
 
-.empty {
-    text-align: center;
-    padding: 80px 20px;
-    color: #777;
+@media (max-width: 600px) {
+    .app {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+    <div class="logo">Notebook</div>
+    <div class="header-icon">✦</div>
+</header>
+
+<main class="content" id="home">
+
+    <div class="welcome">
+        <h1>Bem-vindo à Notebook</h1>
+        <p>Partilha momentos. Descobre pessoas.</p>
+    </div>
+
+    <section class="create">
+
+        <textarea id="postText"
+        placeholder="O que estás a pensar?"></textarea>
+
+        <div id="preview"></div>
+
+        <div class="create-bottom">
+
+            <label class="upload">
+                📷 Foto/Vídeo
+                <input
+                    type="file"
+                    id="mediaInput"
+                    accept="image/*,video/*">
+            </label>
+
+            <button class="post-button" onclick="createPost()">
+                Publicar
+            </button>
+
+        </div>
+    </section>
+
+    <section id="feed">
+
+        <article class="post">
+
+            <div class="post-top">
+                <div class="avatar">N</div>
+
+                <div>
+                    <div class="username">Notebook</div>
+                    <div class="time">Agora</div>
+                </div>
+            </div>
+
+            <div class="post-text">
+                Bem-vindo à primeira versão da Notebook! 💜
+            </div>
+
+            <div class="actions">
+                <span onclick="like(this)">♡</span>
+                <span>💬</span>
+                <span>↗</span>
+            </div>
+
+            <div class="likes">
+                0 gostos
+            </div>
+
+        </article>
+
+    </section>
+
+</main>
+
+<section class="profile" id="profile">
+
+    <div class="profile-avatar">N</div>
+
+    <h2>Meu perfil</h2>
+
+    <p>@notebook_user</p>
+
+    <button class="edit">
+        Editar perfil
+    </button>
+
+</section>
+
+<nav class="bottom">
+
+    <button class="active" onclick="showHome(this)">
+        🏠
+    </button>
+
+    <button onclick="showProfile(this)">
+        👤
+    </button>
+
+    <button onclick="focusPost()">
+        ＋
+    </button>
+
+</nav>
+
+</div>
+
+<script>
+
+let selectedMedia = null;
+
+/* SELECIONAR IMAGEM/VÍDEO */
+
+document.getElementById("mediaInput").addEventListener("change", function(event) {
+
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    selectedMedia = file;
+
+    const preview = document.getElementById("preview");
+
+    preview.innerHTML = "";
+
+    const url = URL.createObjectURL(file);
+
+    if (file.type.startsWith("image/")) {
+
+        const img = document.createElement("img");
+
+        img.src = url;
+        img.style.width = "100%";
+        img.style.maxHeight = "300px";
+        img.style.objectFit = "cover";
+        img.style.borderRadius = "12px";
+        img.style.marginBottom = "12px";
+
+        preview.appendChild(img);
+
+    } else if (file.type.startsWith("video/")) {
+
+        const video = document.createElement("video");
+
+        video.src = url;
+        video.controls = true;
+        video.style.width = "100%";
+        video.style.maxHeight = "300px";
+        video.style.borderRadius = "12px";
+        video.style.marginBottom = "12px";
+
+        preview.appendChild(video);
+    }
+});
+
+
+/* CRIAR PUBLICAÇÃO */
+
+function createPost() {
+
+    const text = document.getElementById("postText").value.trim();
+
+    if (!text && !selectedMedia) {
+        alert("Escreve alguma coisa ou escolhe uma imagem/vídeo.");
+        return;
+    }
+
+    const post = document.createElement("article");
+
+    post.className = "post";
+
+    let mediaHTML = "";
+
+    if (selectedMedia) {
+
+        const url = URL.createObjectURL(selectedMedia);
+
+        if (selectedMedia.type.startsWith("image/")) {
+
+            mediaHTML =
+            `<img class="post-media" src="${url}">`;
+
+        } else {
+
+            mediaHTML =
+            `<video class="post-media" src="${url}" controls></video>`;
+        }
+    }
+
+    post.innerHTML = `
+
+        <div class="post-top">
+
+            <div class="avatar">N</div>
+
+            <div>
+                <div class="username">Você</div>
+                <div class="time">Agora</div>
+            </div>
+
+        </div>
+
+        ${text ? `<div class="post-text">${escapeHTML(text)}</div>` : ""}
+
+        ${mediaHTML}
+
+        <div class="actions">
+            <span onclick="like(this)">♡</span>
+            <span>💬</span>
+            <span>↗</span>
+        </div>
+
+        <div class="likes">
+            0 gostos
+        </div>
+    `;
+
+    document.getElementById("feed").prepend(post);
+
+    document.getElementById("postText").value = "";
+
+    document.getElementById("mediaInput").value = "";
+
+    document.getElementById("preview").innerHTML = "";
+
+    selectedMedia = null;
 }
 
-.empty-icon {
-    font-size: 55px;
-    margin-bottom: 15px;
+
+/* GOSTO */
+
+function like(element) {
+
+    if (element.innerHTML === "♡") {
+        element.innerHTML = "♥";
+    } else {
+        element.innerHTML = "♡";
+    }
 }
 
-/* BOTTOM NAV */
 
-.bottom-nav {
-    position: fixed;
-    z-index: 100;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(650px, calc(100% - 25px));
-    height: 68px;
-    background: rgba(25,25,25,.94);
-    border: 1px solid #303030;
-    border
+/* NAVEGAÇÃO */
+
+function showProfile(button) {
+
+    document.getElementById("home").style.display = "none";
+
+    document.getElementById("profile").style.display = "block";
+
+    document.querySelectorAll(".bottom button")
+    .forEach(b => b.classList.remove("active"));
+
+    button.classList.add("active");
+}
+
+
+function showHome(button) {
+
+    document.getElementById("home").style.display = "block";
+
+    document.getElementById("profile").style.display = "none";
+
+    document.querySelectorAll(".bottom button")
+    .forEach(b => b.classList.remove("active"));
+
+    button.classList.add("active");
+}
+
+
+function focusPost() {
+
+    document.getElementById("home").style.display = "block";
+
+    document.getElementById("profile").style.display = "none";
+
+    document.getElementById("postText").focus();
+
+}
+
+
+/* SEGURANÇA DO TEXTO */
+
+function escapeHTML(text) {
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+</script>
+
+</body>
+</html>
