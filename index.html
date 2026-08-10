@@ -4,7 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Notebook</title>
 
 <style>
@@ -14,10 +13,21 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bg: #050507;
+    --card: #101014;
+    --card2: #17171d;
+    --border: rgba(255,255,255,.09);
+    --text: #fff;
+    --muted: rgba(255,255,255,.52);
+    --purple: #8b3cff;
+    --purple2: #5417a1;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #050507;
-    color: white;
+    background: var(--bg);
+    color: var(--text);
     min-height: 100vh;
 }
 
@@ -26,26 +36,28 @@ body::before {
     position: fixed;
     inset: 0;
     background:
-        radial-gradient(circle at 15% 0%, rgba(125,45,220,.28), transparent 32%),
+        radial-gradient(circle at 10% 0%, rgba(125,45,220,.28), transparent 32%),
         radial-gradient(circle at 90% 80%, rgba(85,25,160,.16), transparent 30%);
     pointer-events: none;
     z-index: -1;
 }
 
-/* TOPO */
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar {
     height: 70px;
+    padding: 0 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 5%;
-    background: rgba(5,5,7,.78);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(255,255,255,.08);
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 50;
+    background: rgba(5,5,7,.82);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
 }
 
 .logo {
@@ -63,44 +75,49 @@ body::before {
 .search {
     width: 330px;
     height: 40px;
+    padding: 0 15px;
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,.1);
+    border: 1px solid var(--border);
     background: rgba(255,255,255,.06);
     color: white;
-    padding: 0 15px;
     outline: none;
 }
 
-.search::placeholder {
-    color: rgba(255,255,255,.4);
-}
-
 .search:focus {
-    border-color: rgba(160,90,255,.7);
+    border-color: var(--purple);
 }
 
-.profile {
+.profile-mini {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    background: linear-gradient(135deg,var(--purple),#32105e);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg,#7b2cff,#32105e);
     font-weight: bold;
+    overflow: hidden;
 }
 
-/* CONTEÚDO */
+.profile-mini img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =========================
+   LAYOUT
+========================= */
 
 .container {
     width: 100%;
     max-width: 900px;
     margin: auto;
-    padding: 30px 20px 100px;
+    padding: 30px 20px 110px;
 }
 
 .welcome {
-    margin-bottom: 30px;
+    margin-bottom: 28px;
 }
 
 .welcome h1 {
@@ -109,23 +126,24 @@ body::before {
 }
 
 .welcome p {
-    color: rgba(255,255,255,.5);
-    font-size: 15px;
+    color: var(--muted);
 }
 
-/* CATEGORIAS */
+/* =========================
+   CATEGORIES
+========================= */
 
 .categories {
     display: flex;
     gap: 8px;
-    margin-bottom: 30px;
     overflow-x: auto;
+    margin-bottom: 25px;
 }
 
 .category {
-    border: 1px solid rgba(255,255,255,.1);
+    border: 1px solid var(--border);
     background: rgba(255,255,255,.04);
-    color: rgba(255,255,255,.65);
+    color: var(--muted);
     padding: 9px 18px;
     border-radius: 30px;
     cursor: pointer;
@@ -134,11 +152,13 @@ body::before {
 
 .category.active {
     color: white;
-    background: linear-gradient(135deg,#7b2cff,#5319a0);
+    background: linear-gradient(135deg,var(--purple),var(--purple2));
     border-color: transparent;
 }
 
-/* FEED */
+/* =========================
+   FEED
+========================= */
 
 .feed {
     display: flex;
@@ -152,7 +172,7 @@ body::before {
         rgba(255,255,255,.075),
         rgba(255,255,255,.025)
     );
-    border: 1px solid rgba(255,255,255,.09);
+    border: 1px solid var(--border);
     border-radius: 18px;
     padding: 20px;
     backdrop-filter: blur(15px);
@@ -162,18 +182,26 @@ body::before {
     display: flex;
     align-items: center;
     gap: 11px;
-    margin-bottom: 17px;
+    margin-bottom: 14px;
 }
 
 .avatar {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     background: linear-gradient(135deg,#8c3cff,#32105e);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .username {
@@ -188,8 +216,8 @@ body::before {
 
 .post-category {
     display: inline-block;
-    margin-bottom: 12px;
     padding: 5px 10px;
+    margin-bottom: 12px;
     border-radius: 20px;
     background: rgba(139,60,255,.15);
     color: #c38cff;
@@ -197,16 +225,26 @@ body::before {
 }
 
 .post-text {
-    color: rgba(255,255,255,.82);
+    color: rgba(255,255,255,.84);
     line-height: 1.6;
     font-size: 15px;
-    margin-bottom: 18px;
     white-space: pre-wrap;
+    margin-bottom: 15px;
+}
+
+.post-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 15px;
+    display: block;
 }
 
 .post-actions {
     display: flex;
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: 5px;
     border-top: 1px solid rgba(255,255,255,.06);
     padding-top: 12px;
 }
@@ -215,7 +253,7 @@ body::before {
     border: none;
     background: transparent;
     color: rgba(255,255,255,.55);
-    padding: 8px 12px;
+    padding: 8px 10px;
     border-radius: 9px;
     cursor: pointer;
 }
@@ -229,7 +267,91 @@ body::before {
     color: #b56cff;
 }
 
-/* BOTÃO + */
+.delete-button {
+    margin-left: auto;
+}
+
+/* =========================
+   COMMENTS
+========================= */
+
+.comments {
+    display: none;
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+}
+
+.comments.open {
+    display: block;
+}
+
+.comment {
+    display: flex;
+    gap: 9px;
+    margin-bottom: 12px;
+}
+
+.comment-avatar {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    border-radius: 50%;
+    background: #32105e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.comment-content {
+    background: rgba(255,255,255,.05);
+    border-radius: 12px;
+    padding: 8px 11px;
+    flex: 1;
+}
+
+.comment-name {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.comment-text {
+    font-size: 13px;
+    color: rgba(255,255,255,.75);
+}
+
+.comment-form {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.comment-input {
+    flex: 1;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.04);
+    color: white;
+    padding: 0 12px;
+    outline: none;
+}
+
+.comment-send {
+    border: none;
+    border-radius: 10px;
+    padding: 0 14px;
+    color: white;
+    background: var(--purple);
+    cursor: pointer;
+}
+
+/* =========================
+   CREATE BUTTON
+========================= */
 
 .create {
     position: fixed;
@@ -242,21 +364,23 @@ body::before {
     color: white;
     font-size: 28px;
     cursor: pointer;
-    background: linear-gradient(135deg,#8b3cff,#5417a1);
+    background: linear-gradient(135deg,var(--purple),var(--purple2));
     box-shadow: 0 10px 35px rgba(110,40,220,.4);
-    z-index: 30;
+    z-index: 60;
 }
 
 .create:hover {
     transform: scale(1.05);
 }
 
-/* MODAL */
+/* =========================
+   MODALS
+========================= */
 
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,.72);
+    background: rgba(0,0,0,.74);
     backdrop-filter: blur(8px);
     display: none;
     align-items: center;
@@ -272,8 +396,10 @@ body::before {
 .modal {
     width: 100%;
     max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
     background: #101014;
-    border: 1px solid rgba(255,255,255,.1);
+    border: 1px solid var(--border);
     border-radius: 20px;
     padding: 24px;
     box-shadow: 0 25px 80px rgba(0,0,0,.6);
@@ -281,9 +407,9 @@ body::before {
 
 .modal-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    margin-bottom: 22px;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .modal-header h2 {
@@ -303,9 +429,9 @@ body::before {
 
 .post-input {
     width: 100%;
-    min-height: 150px;
+    min-height: 140px;
     resize: vertical;
-    border: 1px solid rgba(255,255,255,.1);
+    border: 1px solid var(--border);
     border-radius: 14px;
     background: rgba(255,255,255,.04);
     color: white;
@@ -313,33 +439,43 @@ body::before {
     outline: none;
     font-family: inherit;
     font-size: 15px;
-    line-height: 1.5;
-}
-
-.post-input::placeholder {
-    color: rgba(255,255,255,.35);
-}
-
-.post-input:focus {
-    border-color: #7b2cff;
 }
 
 .modal-label {
     display: block;
-    color: rgba(255,255,255,.6);
+    color: var(--muted);
     font-size: 13px;
-    margin: 18px 0 8px;
+    margin: 17px 0 8px;
 }
 
-.category-select {
+.category-select,
+.input {
     width: 100%;
-    height: 45px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,.1);
+    height: 44px;
+    border-radius: 11px;
+    border: 1px solid var(--border);
     background: #18181e;
     color: white;
     padding: 0 12px;
     outline: none;
+}
+
+.file-input {
+    width: 100%;
+    color: var(--muted);
+}
+
+.image-preview {
+    display: none;
+    width: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-top: 10px;
+}
+
+.image-preview.show {
+    display: block;
 }
 
 .publish {
@@ -348,23 +484,145 @@ body::before {
     margin-top: 20px;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(135deg,#8b3cff,#5417a1);
+    background: linear-gradient(135deg,var(--purple),var(--purple2));
     color: white;
     font-weight: 600;
     cursor: pointer;
 }
 
-.publish:hover {
-    filter: brightness(1.1);
+/* =========================
+   PROFILE
+========================= */
+
+.profile-page {
+    display: none;
 }
 
-/* NAVEGAÇÃO MOBILE */
+.profile-page.show {
+    display: block;
+}
+
+.profile-card {
+    background: rgba(255,255,255,.05);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+}
+
+.profile-large {
+    width: 90px;
+    height: 90px;
+    margin: auto auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg,var(--purple),#32105e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.profile-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-card h2 {
+    margin-bottom: 5px;
+}
+
+.profile-card p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.profile-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.secondary-button {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.05);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
 
 .bottom-nav {
     display: none;
 }
 
-/* MOBILE */
+/* =========================
+   LOGIN
+========================= */
+
+.login-screen {
+    position: fixed;
+    inset: 0;
+    background: #050507;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 500;
+}
+
+.login-screen.show {
+    display: flex;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    background: #101014;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.login-logo {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.login-box .input {
+    margin-bottom: 12px;
+}
+
+.login-button {
+    width: 100%;
+    height: 46px;
+    border: none;
+    border-radius: 11px;
+    color: white;
+    background: linear-gradient(135deg,var(--purple),var(--purple2));
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 600px) {
 
@@ -381,13 +639,13 @@ body::before {
         display: none;
     }
 
-    .profile {
+    .profile-mini {
         width: 36px;
         height: 36px;
     }
 
     .container {
-        padding: 25px 15px 90px;
+        padding: 25px 15px 95px;
     }
 
     .welcome h1 {
@@ -415,10 +673,10 @@ body::before {
         left: 0;
         right: 0;
         height: 58px;
-        background: rgba(5,5,7,.92);
+        background: rgba(5,5,7,.94);
         backdrop-filter: blur(18px);
-        border-top: 1px solid rgba(255,255,255,.08);
-        z-index: 20;
+        border-top: 1px solid var(--border);
+        z-index: 80;
     }
 
     .bottom-nav button {
@@ -435,7 +693,6 @@ body::before {
 
     .modal {
         padding: 20px;
-        border-radius: 18px;
     }
 }
 </style>
@@ -443,6 +700,10 @@ body::before {
 </head>
 
 <body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <header class="navbar">
 
@@ -453,24 +714,33 @@ body::before {
 
 <input
     class="search"
-    type="text"
     id="searchInput"
+    type="text"
     placeholder="Pesquisar..."
 >
 
-<div class="profile">
+<button
+    class="profile-mini"
+    id="profileMini"
+>
     H
-</div>
+</button>
 ```
 
 </header>
 
-<main class="container">
+<!-- =========================
+     HOME
+========================= -->
+
+<main class="container" id="homePage">
 
 ```
 <section class="welcome">
 
-    <h1>Olá 👋</h1>
+    <h1 id="welcomeTitle">
+        comece a navegar
+    </h1>
 
     <p>
         Descobre o que está a acontecer na Notebook.
@@ -481,120 +751,159 @@ body::before {
 
 <div class="categories">
 
-    <button class="category active" data-category="Tudo">
+    <button
+        class="category active"
+        data-category="Tudo"
+    >
         Tudo
     </button>
 
-    <button class="category" data-category="Anime">
+    <button
+        class="category"
+        data-category="Anime"
+    >
         Anime
     </button>
 
-    <button class="category" data-category="Desporto">
+    <button
+        class="category"
+        data-category="Desporto"
+    >
         Desporto
     </button>
 
 </div>
 
 
-<section class="feed" id="feed">
-
-    <article class="post" data-category="Tudo">
-
-        <div class="post-header">
-
-            <div class="avatar">
-                N
-            </div>
-
-            <div>
-                <div class="username">
-                    Notebook
-                </div>
-
-                <div class="time">
-                    Agora
-                </div>
-            </div>
-
-        </div>
-
-        <span class="post-category">
-            Tudo
-        </span>
-
-        <p class="post-text">
-```
-
-Bem-vindo à Notebook.
-
-Este é o início de uma nova forma de partilhar as tuas ideias. </p>
-
-```
-        <div class="post-actions">
-
-            <button class="post-action like-button">
-                ♡ Gostar
-            </button>
-
-            <button class="post-action">
-                💬 Comentar
-            </button>
-
-            <button class="post-action">
-                ↗ Partilhar
-            </button>
-
-        </div>
-
-    </article>
-
-</section>
+<section
+    class="feed"
+    id="feed"
+></section>
 ```
 
 </main>
 
-<button class="create" id="createButton">
-    +
+<!-- =========================
+     PERFIL
+========================= -->
+
+<main
+    class="container profile-page"
+    id="profilePage"
+>
+
+```
+<div class="profile-card">
+
+    <div
+        class="profile-large"
+        id="profileLarge"
+    >
+        H
+    </div>
+
+    <h2 id="profileName">
+        Hariclene
+    </h2>
+
+    <p id="profileUsername">
+        @hariclene
+    </p>
+
+    <p id="postCount">
+        0 publicações
+    </p>
+
+    <div class="profile-buttons">
+
+        <button
+            class="secondary-button"
+            id="editProfile"
+        >
+            Editar perfil
+        </button>
+
+        <button
+            class="secondary-button"
+            id="logoutButton"
+        >
+            Sair
+        </button>
+
+    </div>
+
+</div>
+```
+
+</main>
+
+<!-- =========================
+     CREATE BUTTON
+========================= -->
+
+<button
+class="create"
+id="createButton"
+
+>
+
+```
++
+```
+
 </button>
+
+<!-- =========================
+     BOTTOM NAV
+========================= -->
 
 <nav class="bottom-nav">
 
 ```
-<button class="active">
+<button
+    class="active"
+    id="homeNav"
+>
     ⌂
 </button>
 
-<button>
+<button id="searchNav">
     ◯
 </button>
 
-<button id="mobileCreate">
+<button id="createNav">
     ＋
 </button>
 
-<button>
-    ♡
-</button>
-
-<button>
+<button id="profileNav">
     ●
 </button>
 ```
 
 </nav>
 
-<!-- MODAL DE CRIAR PUBLICAÇÃO -->
+<!-- =========================
+     CREATE MODAL
+========================= -->
 
-<div class="modal-overlay" id="modalOverlay">
+<div
+    class="modal-overlay"
+    id="createModal"
+>
 
 ```
 <div class="modal">
 
     <div class="modal-header">
 
-        <h2>Criar publicação</h2>
+        <h2>
+            Criar publicação
+        </h2>
 
-        <button class="close" id="closeModal">
+        <button
+            class="close"
+            id="closeCreate"
+        >
             ×
         </button>
 
@@ -632,6 +941,23 @@ Este é o início de uma nova forma de partilhar as tuas ideias. </p>
     </select>
 
 
+    <label class="modal-label">
+        Imagem
+    </label>
+
+    <input
+        class="file-input"
+        type="file"
+        id="imageInput"
+        accept="image/*"
+    >
+
+    <img
+        class="image-preview"
+        id="imagePreview"
+    >
+
+
     <button
         class="publish"
         id="publishButton"
@@ -644,217 +970,778 @@ Este é o início de uma nova forma de partilhar as tuas ideias. </p>
 
 </div>
 
+<!-- =========================
+     PROFILE MODAL
+========================= -->
+
+<div
+    class="modal-overlay"
+    id="profileModal"
+>
+
+```
+<div class="modal">
+
+    <div class="modal-header">
+
+        <h2>
+            Editar perfil
+        </h2>
+
+        <button
+            class="close"
+            id="closeProfile"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <label class="modal-label">
+        Nome
+    </label>
+
+    <input
+        class="input"
+        id="editName"
+        placeholder="O teu nome"
+    >
+
+
+    <label class="modal-label">
+        Username
+    </label>
+
+    <input
+        class="input"
+        id="editUsername"
+        placeholder="@username"
+    >
+
+
+    <label class="modal-label">
+        Foto de perfil
+    </label>
+
+    <input
+        class="file-input"
+        type="file"
+        id="profileImageInput"
+        accept="image/*"
+    >
+
+
+    <button
+        class="publish"
+        id="saveProfile"
+    >
+        Guardar alterações
+    </button>
+
+</div>
+```
+
+</div>
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<div
+    class="login-screen"
+    id="loginScreen"
+>
+
+```
+<div class="login-box">
+
+    <div class="login-logo">
+        Notebook
+    </div>
+
+    <div class="login-subtitle">
+        Entra na tua conta
+    </div>
+
+
+    <input
+        class="input"
+        id="loginName"
+        placeholder="Nome"
+    >
+
+
+    <input
+        class="input"
+        id="loginUsername"
+        placeholder="Username"
+    >
+
+
+    <button
+        class="login-button"
+        id="loginButton"
+    >
+        Entrar
+    </button>
+
+</div>
+```
+
+</div>
+
 <script>
 
-const modalOverlay = document.getElementById("modalOverlay");
-const createButton = document.getElementById("createButton");
-const mobileCreate = document.getElementById("mobileCreate");
-const closeModal = document.getElementById("closeModal");
+/* =====================================================
+   DADOS
+===================================================== */
 
-const postInput = document.getElementById("postInput");
-const postCategory = document.getElementById("postCategory");
-const publishButton = document.getElementById("publishButton");
-
-const feed = document.getElementById("feed");
-
-const categories =
-    document.querySelectorAll(".category");
+const STORAGE_POSTS = "notebook_posts_v2";
+const STORAGE_USER = "notebook_user_v2";
 
 
-/* ABRIR MODAL */
-
-function openModal() {
-
-    modalOverlay.classList.add("show");
-
-    setTimeout(() => {
-        postInput.focus();
-    }, 100);
-
-}
+let currentUser =
+    JSON.parse(
+        localStorage.getItem(STORAGE_USER)
+    );
 
 
-/* FECHAR MODAL */
-
-function closeCreateModal() {
-
-    modalOverlay.classList.remove("show");
-
-}
+let posts =
+    JSON.parse(
+        localStorage.getItem(STORAGE_POSTS)
+    ) || [];
 
 
-/* BOTÕES */
+/* =====================================================
+   ELEMENTOS
+===================================================== */
 
-createButton.addEventListener(
-    "click",
-    openModal
-);
+const feed =
+    document.getElementById("feed");
 
-mobileCreate.addEventListener(
-    "click",
-    openModal
-);
+const createModal =
+    document.getElementById("createModal");
 
-closeModal.addEventListener(
-    "click",
-    closeCreateModal
-);
+const profileModal =
+    document.getElementById("profileModal");
+
+const loginScreen =
+    document.getElementById("loginScreen");
+
+const postInput =
+    document.getElementById("postInput");
+
+const postCategory =
+    document.getElementById("postCategory");
+
+const imageInput =
+    document.getElementById("imageInput");
+
+const imagePreview =
+    document.getElementById("imagePreview");
+
+const searchInput =
+    document.getElementById("searchInput");
 
 
-/* FECHAR AO CLICAR FORA */
+/* =====================================================
+   LOGIN
+===================================================== */
 
-modalOverlay.addEventListener(
-    "click",
-    function(event) {
+function checkLogin() {
 
-        if (event.target === modalOverlay) {
-            closeCreateModal();
-        }
+    if (!currentUser) {
+
+        loginScreen.classList.add("show");
+
+    } else {
+
+        loginScreen.classList.remove("show");
+
+        updateUserInterface();
 
     }
-);
+
+}
 
 
-/* CRIAR PUBLICAÇÃO */
+document
+    .getElementById("loginButton")
+    .addEventListener(
+        "click",
+        function() {
 
-publishButton.addEventListener(
-    "click",
-    function() {
+            const name =
+                document
+                    .getElementById("loginName")
+                    .value
+                    .trim();
 
-        const text =
-            postInput.value.trim();
+            const username =
+                document
+                    .getElementById("loginUsername")
+                    .value
+                    .trim();
 
-        const category =
-            postCategory.value;
+
+            if (!name || !username) {
+
+                alert(
+                    "Preenche o nome e o username."
+                );
+
+                return;
+
+            }
 
 
-        if (!text) {
+            currentUser = {
 
-            alert(
-                "Escreve alguma coisa antes de publicar."
+                name: name,
+
+                username:
+                    username.startsWith("@")
+                    ? username
+                    : "@" + username,
+
+                avatar: null
+
+            };
+
+
+            localStorage.setItem(
+                STORAGE_USER,
+                JSON.stringify(currentUser)
             );
 
-            postInput.focus();
 
+            checkLogin();
+
+        }
+    );
+
+
+/* =====================================================
+   USER INTERFACE
+===================================================== */
+
+function updateUserInterface() {
+
+    if (!currentUser) return;
+
+
+    document
+        .getElementById("welcomeTitle")
+        .textContent =
+            "Olá " +
+            currentUser.name +
+            " 👋";
+
+
+    document
+        .getElementById("profileName")
+        .textContent =
+            currentUser.name;
+
+
+    document
+        .getElementById("profileUsername")
+        .textContent =
+            currentUser.username;
+
+
+    const mini =
+        document.getElementById("profileMini");
+
+    const large =
+        document.getElementById("profileLarge");
+
+
+    if (currentUser.avatar) {
+
+        mini.innerHTML =
+            `<img src="${currentUser.avatar}">`;
+
+        large.innerHTML =
+            `<img src="${currentUser.avatar}">`;
+
+    } else {
+
+        mini.textContent =
+            currentUser.name
+                .charAt(0)
+                .toUpperCase();
+
+        large.textContent =
+            currentUser.name
+                .charAt(0)
+                .toUpperCase();
+
+    }
+
+
+    updatePostCount();
+
+}
+
+
+/* =====================================================
+   POSTS
+===================================================== */
+
+function savePosts() {
+
+    localStorage.setItem(
+        STORAGE_POSTS,
+        JSON.stringify(posts)
+    );
+
+}
+
+
+function formatTime(timestamp) {
+
+    const date =
+        new Date(timestamp);
+
+    return date.toLocaleString(
+        "pt-PT",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
+
+}
+
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+function renderPosts() {
+
+    feed.innerHTML = "";
+
+
+    if (posts.length === 0) {
+
+        feed.innerHTML = `
+
+            <div class="post">
+
+                <p class="post-text">
+                    Ainda não existem publicações.
+                    Sê o primeiro a publicar!
+                </p>
+
+            </div>
+
+        `;
+
+        updatePostCount();
+
+        return;
+
+    }
+
+
+    const search =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+
+    posts.forEach(post => {
+
+        const content =
+            (
+                post.text +
+                " " +
+                post.category +
+                " " +
+                post.username
+            )
+            .toLowerCase();
+
+
+        if (
+            search &&
+            !content.includes(search)
+        ) {
             return;
+        }
+
+
+        const article =
+            document.createElement("article");
+
+        article.className = "post";
+
+        article.dataset.id =
+            post.id;
+
+        article.dataset.category =
+            post.category;
+
+
+        let avatarHTML;
+
+
+        if (post.avatar) {
+
+            avatarHTML =
+                `<img src="${post.avatar}">`;
+
+        } else {
+
+            avatarHTML =
+                escapeHTML(
+                    post.username
+                        .charAt(0)
+                        .toUpperCase()
+                );
 
         }
 
 
-        const post =
-            document.createElement("article");
+        let imageHTML = "";
 
-        post.className = "post";
+        if (post.image) {
 
-        post.dataset.category = category;
+            imageHTML = `
 
-        post.innerHTML = `
+                <img
+                    class="post-image"
+                    src="${post.image}"
+                    alt="Imagem da publicação"
+                >
+
+            `;
+
+        }
+
+
+        const commentsHTML =
+            (post.comments || [])
+            .map(comment => `
+
+                <div class="comment">
+
+                    <div class="comment-avatar">
+                        ${escapeHTML(
+                            comment.username
+                                .charAt(0)
+                                .toUpperCase()
+                        )}
+                    </div>
+
+                    <div class="comment-content">
+
+                        <div class="comment-name">
+                            ${escapeHTML(
+                                comment.username
+                            )}
+                        </div>
+
+                        <div class="comment-text">
+                            ${escapeHTML(
+                                comment.text
+                            )}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `)
+            .join("");
+
+
+        const liked =
+            post.likedBy &&
+            post.likedBy.includes(
+                currentUser.username
+            );
+
+
+        const isMine =
+            post.username ===
+            currentUser.username;
+
+
+        article.innerHTML = `
 
             <div class="post-header">
 
                 <div class="avatar">
-                    H
+                    ${avatarHTML}
                 </div>
 
                 <div>
 
                     <div class="username">
-                        Hariclene
+                        ${escapeHTML(
+                            post.username
+                        )}
                     </div>
 
                     <div class="time">
-                        Agora
+                        ${formatTime(post.createdAt)}
                     </div>
 
                 </div>
 
             </div>
 
+
             <span class="post-category">
-                ${category}
+                ${escapeHTML(post.category)}
             </span>
 
-            <p class="post-text"></p>
+
+            <p class="post-text">
+                ${escapeHTML(post.text)}
+            </p>
+
+
+            ${imageHTML}
+
 
             <div class="post-actions">
 
-                <button class="post-action like-button">
-                    ♡ Gostar
+                <button
+                    class="post-action like-button ${liked ? "liked" : ""}"
+                >
+                    ${liked ? "♥" : "♡"}
+                    Gostar
+                    (${post.likes || 0})
                 </button>
 
-                <button class="post-action">
+
+                <button
+                    class="post-action comment-button"
+                >
                     💬 Comentar
+                    (${(post.comments || []).length})
                 </button>
 
-                <button class="post-action">
-                    ↗ Partilhar
-                </button>
 
-                <button class="post-action delete-button">
-                    🗑 Apagar
-                </button>
+                ${
+                    isMine
+                    ?
+                    `
+                    <button
+                        class="post-action delete-button"
+                    >
+                        🗑 Apagar
+                    </button>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+
+            <div class="comments">
+
+                <div class="comments-list">
+                    ${commentsHTML}
+                </div>
+
+
+                <div class="comment-form">
+
+                    <input
+                        class="comment-input"
+                        placeholder="Escreve um comentário..."
+                    >
+
+                    <button class="comment-send">
+                        Enviar
+                    </button>
+
+                </div>
 
             </div>
 
         `;
 
 
-        post.querySelector(".post-text")
-            .textContent = text;
+        feed.appendChild(article);
 
 
-        feed.prepend(post);
-
-
-        addPostActions(post);
-
-
-        postInput.value = "";
-
-        postCategory.value = "Tudo";
-
-        closeCreateModal();
-
-    }
-);
-
-
-/* AÇÕES DAS PUBLICAÇÕES */
-
-function addPostActions(post) {
-
-    const likeButton =
-        post.querySelector(".like-button");
-
-    const deleteButton =
-        post.querySelector(".delete-button");
-
-
-    if (likeButton) {
-
-        likeButton.addEventListener(
-            "click",
-            function() {
-
-                this.classList.toggle("liked");
-
-                if (this.classList.contains("liked")) {
-
-                    this.textContent =
-                        "♥ Gostei";
-
-                } else {
-
-                    this.textContent =
-                        "♡ Gostar";
-
-                }
-
-            }
+        attachPostEvents(
+            article,
+            post
         );
 
-    }
+    });
 
+
+    updatePostCount();
+
+}
+
+
+/* =====================================================
+   POST EVENTS
+===================================================== */
+
+function attachPostEvents(
+    article,
+    post
+) {
+
+    const likeButton =
+        article.querySelector(
+            ".like-button"
+        );
+
+
+    const commentButton =
+        article.querySelector(
+            ".comment-button"
+        );
+
+
+    const comments =
+        article.querySelector(
+            ".comments"
+        );
+
+
+    const commentInput =
+        article.querySelector(
+            ".comment-input"
+        );
+
+
+    const commentSend =
+        article.querySelector(
+            ".comment-send"
+        );
+
+
+    const deleteButton =
+        article.querySelector(
+            ".delete-button"
+        );
+
+
+    /* LIKE */
+
+    likeButton.addEventListener(
+        "click",
+        function() {
+
+            if (!post.likedBy) {
+                post.likedBy = [];
+            }
+
+
+            const index =
+                post.likedBy.indexOf(
+                    currentUser.username
+                );
+
+
+            if (index >= 0) {
+
+                post.likedBy.splice(
+                    index,
+                    1
+                );
+
+                post.likes =
+                    Math.max(
+                        0,
+                        (post.likes || 0) - 1
+                    );
+
+            } else {
+
+                post.likedBy.push(
+                    currentUser.username
+                );
+
+                post.likes =
+                    (post.likes || 0) + 1;
+
+            }
+
+
+            savePosts();
+
+            renderPosts();
+
+        }
+    );
+
+
+    /* COMENTÁRIOS */
+
+    commentButton.addEventListener(
+        "click",
+        function() {
+
+            comments.classList.toggle(
+                "open"
+            );
+
+        }
+    );
+
+
+    /* ENVIAR COMENTÁRIO */
+
+    commentSend.addEventListener(
+        "click",
+        function() {
+
+            const text =
+                commentInput.value.trim();
+
+
+            if (!text) return;
+
+
+            if (!post.comments) {
+                post.comments = [];
+            }
+
+
+            post.comments.push({
+
+                username:
+                    currentUser.username,
+
+                text: text
+
+            });
+
+
+            savePosts();
+
+            renderPosts();
+
+        }
+    );
+
+
+    /* APAGAR */
 
     if (deleteButton) {
 
@@ -862,7 +1749,25 @@ function addPostActions(post) {
             "click",
             function() {
 
-                post.remove();
+                const confirmed =
+                    confirm(
+                        "Apagar esta publicação?"
+                    );
+
+
+                if (!confirmed) return;
+
+
+                posts =
+                    posts.filter(
+                        p =>
+                            p.id !== post.id
+                    );
+
+
+                savePosts();
+
+                renderPosts();
 
             }
         );
@@ -872,98 +1777,608 @@ function addPostActions(post) {
 }
 
 
-/* ATIVAR LIKE NAS PUBLICAÇÕES EXISTENTES */
+/* =====================================================
+   CREATE POST
+===================================================== */
 
 document
-    .querySelectorAll(".post")
-    .forEach(post => {
-
-        addPostActions(post);
-
-    });
-
-
-/* FILTRO DE CATEGORIAS */
-
-categories.forEach(button => {
-
-    button.addEventListener(
+    .getElementById("publishButton")
+    .addEventListener(
         "click",
         function() {
 
-            categories.forEach(
-                b => b.classList.remove("active")
-            );
-
-            this.classList.add("active");
+            const text =
+                postInput.value.trim();
 
 
-            const selected =
-                this.dataset.category;
+            if (!text) {
+
+                alert(
+                    "Escreve alguma coisa antes de publicar."
+                );
+
+                return;
+
+            }
 
 
-            document
-                .querySelectorAll(".post")
-                .forEach(post => {
+            const publish =
+                function(imageData) {
 
-                    if (
-                        selected === "Tudo" ||
-                        post.dataset.category === selected
-                    ) {
+                    const newPost = {
 
-                        post.style.display = "";
+                        id:
+                            Date.now(),
 
-                    } else {
+                        username:
+                            currentUser.username,
 
-                        post.style.display = "none";
+                        avatar:
+                            currentUser.avatar,
 
-                    }
+                        text: text,
 
-                });
+                        category:
+                            postCategory.value,
+
+                        image:
+                            imageData || null,
+
+                        likes: 0,
+
+                        likedBy: [],
+
+                        comments: [],
+
+                        createdAt:
+                            new Date().toISOString()
+
+                    };
+
+
+                    posts.unshift(
+                        newPost
+                    );
+
+
+                    savePosts();
+
+                    renderPosts();
+
+
+                    postInput.value = "";
+
+                    postCategory.value =
+                        "Tudo";
+
+                    imageInput.value = "";
+
+                    imagePreview.src = "";
+
+                    imagePreview.classList.remove(
+                        "show"
+                    );
+
+
+                    closeModal(
+                        createModal
+                    );
+
+                };
+
+
+            if (
+                imageInput.files &&
+                imageInput.files[0]
+            ) {
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function(event) {
+
+                        publish(
+                            event.target.result
+                        );
+
+                    };
+
+
+                reader.readAsDataURL(
+                    imageInput.files[0]
+                );
+
+            } else {
+
+                publish(null);
+
+            }
 
         }
     );
 
-});
+
+/* =====================================================
+   IMAGE PREVIEW
+===================================================== */
+
+imageInput.addEventListener(
+    "change",
+    function() {
+
+        const file =
+            this.files[0];
 
 
-/* PESQUISA */
+        if (!file) return;
 
-const searchInput =
-    document.getElementById("searchInput");
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(event) {
+
+                imagePreview.src =
+                    event.target.result;
+
+                imagePreview.classList.add(
+                    "show"
+                );
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* =====================================================
+   CATEGORIES
+===================================================== */
+
+document
+    .querySelectorAll(".category")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                document
+                    .querySelectorAll(".category")
+                    .forEach(
+                        b =>
+                            b.classList.remove(
+                                "active"
+                            )
+                    );
+
+
+                this.classList.add(
+                    "active"
+                );
+
+
+                const selected =
+                    this.dataset.category;
+
+
+                document
+                    .querySelectorAll(".post")
+                    .forEach(post => {
+
+                        if (
+                            selected === "Tudo" ||
+                            post.dataset.category ===
+                            selected
+                        ) {
+
+                            post.style.display =
+                                "";
+
+                        } else {
+
+                            post.style.display =
+                                "none";
+
+                        }
+
+                    });
+
+            }
+        );
+
+    });
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
 
 searchInput.addEventListener(
     "input",
     function() {
 
-        const search =
-            this.value.toLowerCase().trim();
-
-
-        document
-            .querySelectorAll(".post")
-            .forEach(post => {
-
-                const content =
-                    post.textContent.toLowerCase();
-
-
-                if (
-                    content.includes(search)
-                ) {
-
-                    post.style.display = "";
-
-                } else {
-
-                    post.style.display = "none";
-
-                }
-
-            });
+        renderPosts();
 
     }
 );
+
+
+/* =====================================================
+   MODAL FUNCTIONS
+===================================================== */
+
+function openModal(modal) {
+
+    modal.classList.add(
+        "show"
+    );
+
+}
+
+
+function closeModal(modal) {
+
+    modal.classList.remove(
+        "show"
+    );
+
+}
+
+
+/* CREATE */
+
+document
+    .getElementById("createButton")
+    .addEventListener(
+        "click",
+        () =>
+            openModal(createModal)
+    );
+
+
+document
+    .getElementById("createNav")
+    .addEventListener(
+        "click",
+        () =>
+            openModal(createModal)
+    );
+
+
+document
+    .getElementById("closeCreate")
+    .addEventListener(
+        "click",
+        () =>
+            closeModal(createModal)
+    );
+
+
+/* PROFILE */
+
+document
+    .getElementById("profileMini")
+    .addEventListener(
+        "click",
+        () =>
+            showProfile()
+    );
+
+
+document
+    .getElementById("profileNav")
+    .addEventListener(
+        "click",
+        () =>
+            showProfile()
+    );
+
+
+function showProfile() {
+
+    document
+        .getElementById("homePage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("profilePage")
+        .classList.add("show");
+
+
+    document
+        .getElementById("createButton")
+        .style.display = "none";
+
+}
+
+
+/* HOME */
+
+document
+    .getElementById("homeNav")
+    .addEventListener(
+        "click",
+        function() {
+
+            document
+                .getElementById("profilePage")
+                .classList.remove("show");
+
+
+            document
+                .getElementById("homePage")
+                .style.display = "";
+
+
+            document
+                .getElementById("createButton")
+                .style.display = "";
+
+        }
+    );
+
+
+/* SEARCH */
+
+document
+    .getElementById("searchNav")
+    .addEventListener(
+        "click",
+        function() {
+
+            document
+                .getElementById("homeNav")
+                .click();
+
+
+            searchInput.focus();
+
+        }
+    );
+
+
+/* =====================================================
+   EDIT PROFILE
+===================================================== */
+
+document
+    .getElementById("editProfile")
+    .addEventListener(
+        "click",
+        function() {
+
+            document
+                .getElementById("editName")
+                .value =
+                    currentUser.name;
+
+
+            document
+                .getElementById("editUsername")
+                .value =
+                    currentUser.username;
+
+
+            openModal(profileModal);
+
+        }
+    );
+
+
+document
+    .getElementById("closeProfile")
+    .addEventListener(
+        "click",
+        function() {
+
+            closeModal(
+                profileModal
+            );
+
+        }
+    );
+
+
+document
+    .getElementById("saveProfile")
+    .addEventListener(
+        "click",
+        function() {
+
+            const name =
+                document
+                    .getElementById("editName")
+                    .value
+                    .trim();
+
+
+            let username =
+                document
+                    .getElementById("editUsername")
+                    .value
+                    .trim();
+
+
+            if (!name || !username) {
+
+                alert(
+                    "Preenche os dados."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                !username.startsWith("@")
+            ) {
+
+                username =
+                    "@" + username;
+
+            }
+
+
+            const update =
+                function(avatar) {
+
+                    currentUser.name =
+                        name;
+
+                    currentUser.username =
+                        username;
+
+
+                    if (avatar) {
+
+                        currentUser.avatar =
+                            avatar;
+
+                    }
+
+
+                    localStorage.setItem(
+                        STORAGE_USER,
+                        JSON.stringify(
+                            currentUser
+                        )
+                    );
+
+
+                    posts.forEach(post => {
+
+                        if (
+                            post.username ===
+                            currentUser.username
+                        ) {
+
+                            post.avatar =
+                                currentUser.avatar;
+
+                        }
+
+                    });
+
+
+                    savePosts();
+
+                    updateUserInterface();
+
+                    renderPosts();
+
+                    closeModal(
+                        profileModal
+                    );
+
+                };
+
+
+            const file =
+                document
+                    .getElementById(
+                        "profileImageInput"
+                    )
+                    .files[0];
+
+
+            if (file) {
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    event =>
+                        update(
+                            event.target.result
+                        );
+
+
+                reader.readAsDataURL(
+                    file
+                );
+
+            } else {
+
+                update(null);
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+document
+    .getElementById("logoutButton")
+    .addEventListener(
+        "click",
+        function() {
+
+            localStorage.removeItem(
+                STORAGE_USER
+            );
+
+            currentUser = null;
+
+            loginScreen.classList.add(
+                "show"
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   POST COUNT
+===================================================== */
+
+function updatePostCount() {
+
+    if (!currentUser) return;
+
+
+    const count =
+        posts.filter(
+            post =>
+                post.username ===
+                currentUser.username
+        ).length;
+
+
+    document
+        .getElementById("postCount")
+        .textContent =
+            count +
+            (
+                count === 1
+                ? " publicação"
+                : " publicações"
+            );
+
+}
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+checkLogin();
+
+renderPosts();
 
 </script>
 
