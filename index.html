@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
@@ -7,7 +8,6 @@
 <title>Notebook</title>
 
 <style>
-
 * {
     margin: 0;
     padding: 0;
@@ -21,23 +21,13 @@ body {
     min-height: 100vh;
 }
 
-/* FUNDO */
-
 body::before {
     content: "";
     position: fixed;
     inset: 0;
     background:
-        radial-gradient(
-            circle at 15% 0%,
-            rgba(125, 45, 220, .28),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(85, 25, 160, .16),
-            transparent 30%
-        );
+        radial-gradient(circle at 15% 0%, rgba(125,45,220,.28), transparent 32%),
+        radial-gradient(circle at 90% 80%, rgba(85,25,160,.16), transparent 30%);
     pointer-events: none;
     z-index: -1;
 }
@@ -49,14 +39,10 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 0 5%;
-
-    background: rgba(5, 5, 7, .75);
+    background: rgba(5,5,7,.78);
     backdrop-filter: blur(18px);
-
     border-bottom: 1px solid rgba(255,255,255,.08);
-
     position: sticky;
     top: 0;
     z-index: 20;
@@ -69,32 +55,19 @@ body::before {
 }
 
 .logo span {
-    background: linear-gradient(
-        90deg,
-        #ffffff,
-        #c889ff
-    );
-
+    background: linear-gradient(90deg,#fff,#c889ff);
     -webkit-background-clip: text;
     color: transparent;
 }
 
-/* PESQUISA */
-
 .search {
     width: 330px;
     height: 40px;
-
     border-radius: 12px;
-
     border: 1px solid rgba(255,255,255,.1);
-
     background: rgba(255,255,255,.06);
-
     color: white;
-
     padding: 0 15px;
-
     outline: none;
 }
 
@@ -106,24 +79,14 @@ body::before {
     border-color: rgba(160,90,255,.7);
 }
 
-/* PERFIL */
-
 .profile {
     width: 40px;
     height: 40px;
-
     border-radius: 50%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background: linear-gradient(
-        135deg,
-        #7b2cff,
-        #32105e
-    );
-
+    background: linear-gradient(135deg,#7b2cff,#32105e);
     font-weight: bold;
 }
 
@@ -132,56 +95,9 @@ body::before {
 .container {
     width: 100%;
     max-width: 900px;
-
     margin: auto;
-
     padding: 30px 20px 100px;
 }
-
-/* CATEGORIAS */
-
-.categories {
-    display: flex;
-    gap: 8px;
-
-    margin-bottom: 30px;
-
-    overflow-x: auto;
-}
-
-.category {
-    border: 1px solid rgba(255,255,255,.1);
-
-    background: rgba(255,255,255,.04);
-
-    color: rgba(255,255,255,.65);
-
-    padding: 9px 18px;
-
-    border-radius: 30px;
-
-    cursor: pointer;
-
-    white-space: nowrap;
-}
-
-.category:hover {
-    background: rgba(255,255,255,.08);
-}
-
-.category.active {
-    color: white;
-
-    background: linear-gradient(
-        135deg,
-        #7b2cff,
-        #5319a0
-    );
-
-    border-color: transparent;
-}
-
-/* BEM-VINDO */
 
 .welcome {
     margin-bottom: 30px;
@@ -189,14 +105,37 @@ body::before {
 
 .welcome h1 {
     font-size: 32px;
-
     margin-bottom: 8px;
 }
 
 .welcome p {
     color: rgba(255,255,255,.5);
-
     font-size: 15px;
+}
+
+/* CATEGORIAS */
+
+.categories {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+}
+
+.category {
+    border: 1px solid rgba(255,255,255,.1);
+    background: rgba(255,255,255,.04);
+    color: rgba(255,255,255,.65);
+    padding: 9px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.category.active {
+    color: white;
+    background: linear-gradient(135deg,#7b2cff,#5319a0);
+    border-color: transparent;
 }
 
 /* FEED */
@@ -204,54 +143,36 @@ body::before {
 .feed {
     display: flex;
     flex-direction: column;
-
     gap: 16px;
 }
 
-/* PUBLICAÇÃO */
-
 .post {
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.075),
-            rgba(255,255,255,.025)
-        );
-
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.075),
+        rgba(255,255,255,.025)
+    );
     border: 1px solid rgba(255,255,255,.09);
-
     border-radius: 18px;
-
     padding: 20px;
-
     backdrop-filter: blur(15px);
 }
 
 .post-header {
     display: flex;
     align-items: center;
-
     gap: 11px;
-
     margin-bottom: 17px;
 }
 
 .avatar {
     width: 40px;
     height: 40px;
-
     border-radius: 50%;
-
-    background: linear-gradient(
-        135deg,
-        #8c3cff,
-        #32105e
-    );
-
+    background: linear-gradient(135deg,#8c3cff,#32105e);
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-weight: bold;
 }
 
@@ -261,106 +182,68 @@ body::before {
 
 .time {
     color: rgba(255,255,255,.35);
-
     font-size: 12px;
-
     margin-top: 3px;
+}
+
+.post-category {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: rgba(139,60,255,.15);
+    color: #c38cff;
+    font-size: 12px;
 }
 
 .post-text {
     color: rgba(255,255,255,.82);
-
     line-height: 1.6;
-
     font-size: 15px;
-
     margin-bottom: 18px;
+    white-space: pre-wrap;
 }
-
-/* IMAGEM DE EXEMPLO */
-
-.post-image {
-    width: 100%;
-
-    height: 320px;
-
-    border-radius: 14px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #35105f,
-            #09030f
-        );
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    color: rgba(255,255,255,.35);
-
-    margin-bottom: 15px;
-}
-
-/* AÇÕES */
 
 .post-actions {
     display: flex;
-
     gap: 8px;
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding-top: 12px;
 }
 
 .post-action {
     border: none;
-
     background: transparent;
-
     color: rgba(255,255,255,.55);
-
     padding: 8px 12px;
-
     border-radius: 9px;
-
     cursor: pointer;
 }
 
 .post-action:hover {
     background: rgba(255,255,255,.07);
-
     color: white;
 }
 
-/* BOTÃO CRIAR */
+.post-action.liked {
+    color: #b56cff;
+}
+
+/* BOTÃO + */
 
 .create {
     position: fixed;
-
     right: 30px;
     bottom: 30px;
-
     width: 58px;
     height: 58px;
-
     border: none;
-
     border-radius: 50%;
-
     color: white;
-
     font-size: 28px;
-
     cursor: pointer;
-
-    background: linear-gradient(
-        135deg,
-        #8b3cff,
-        #5417a1
-    );
-
-    box-shadow:
-        0 10px 35px rgba(110,40,220,.4);
-
+    background: linear-gradient(135deg,#8b3cff,#5417a1);
+    box-shadow: 0 10px 35px rgba(110,40,220,.4);
     z-index: 30;
 }
 
@@ -368,29 +251,125 @@ body::before {
     transform: scale(1.05);
 }
 
-/* BARRA MOBILE */
+/* MODAL */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal {
+    width: 100%;
+    max-width: 520px;
+    background: #101014;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 25px 80px rgba(0,0,0,.6);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.modal-header h2 {
+    font-size: 22px;
+}
+
+.close {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,.07);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.post-input {
+    width: 100%;
+    min-height: 150px;
+    resize: vertical;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 14px;
+    background: rgba(255,255,255,.04);
+    color: white;
+    padding: 15px;
+    outline: none;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.post-input::placeholder {
+    color: rgba(255,255,255,.35);
+}
+
+.post-input:focus {
+    border-color: #7b2cff;
+}
+
+.modal-label {
+    display: block;
+    color: rgba(255,255,255,.6);
+    font-size: 13px;
+    margin: 18px 0 8px;
+}
+
+.category-select {
+    width: 100%;
+    height: 45px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.1);
+    background: #18181e;
+    color: white;
+    padding: 0 12px;
+    outline: none;
+}
+
+.publish {
+    width: 100%;
+    height: 48px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#8b3cff,#5417a1);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.publish:hover {
+    filter: brightness(1.1);
+}
+
+/* NAVEGAÇÃO MOBILE */
 
 .bottom-nav {
     display: none;
 }
 
-/* TABLET */
-
-@media (max-width: 800px) {
-
-    .search {
-        width: 230px;
-    }
-
-}
-
-/* TELEMÓVEL */
+/* MOBILE */
 
 @media (max-width: 600px) {
 
     .navbar {
         height: 62px;
-
         padding: 0 16px;
     }
 
@@ -408,10 +387,7 @@ body::before {
     }
 
     .container {
-        padding:
-            25px
-            15px
-            90px;
+        padding: 25px 15px 90px;
     }
 
     .welcome h1 {
@@ -420,54 +396,36 @@ body::before {
 
     .post {
         padding: 16px;
-
         border-radius: 15px;
-    }
-
-    .post-image {
-        height: 230px;
     }
 
     .create {
         width: 54px;
         height: 54px;
-
         right: 18px;
         bottom: 72px;
     }
 
     .bottom-nav {
         position: fixed;
-
         display: flex;
-
         align-items: center;
         justify-content: space-around;
-
         bottom: 0;
         left: 0;
         right: 0;
-
         height: 58px;
-
-        background: rgba(5,5,7,.9);
-
+        background: rgba(5,5,7,.92);
         backdrop-filter: blur(18px);
-
         border-top: 1px solid rgba(255,255,255,.08);
-
         z-index: 20;
     }
 
     .bottom-nav button {
         border: none;
-
         background: transparent;
-
         color: rgba(255,255,255,.5);
-
         font-size: 20px;
-
         cursor: pointer;
     }
 
@@ -475,93 +433,333 @@ body::before {
         color: #b56cff;
     }
 
+    .modal {
+        padding: 20px;
+        border-radius: 18px;
+    }
 }
-
 </style>
+
 </head>
 
 <body>
 
-
-<!-- TOPO -->
-
 <header class="navbar">
 
-    <div class="logo">
-        <span>Notebook</span>
-    </div>
+```
+<div class="logo">
+    <span>Notebook</span>
+</div>
 
-    <input
-        class="search"
-        type="text"
-        placeholder="Pesquisar..."
-    >
+<input
+    class="search"
+    type="text"
+    id="searchInput"
+    placeholder="Pesquisar..."
+>
 
-    <div class="profile">
-        H
-    </div>
+<div class="profile">
+    H
+</div>
+```
 
 </header>
 
-
-<!-- CONTEÚDO -->
-
 <main class="container">
 
+```
+<section class="welcome">
 
-    <!-- BEM-VINDO -->
+    <h1>Olá 👋</h1>
 
-    <section class="welcome">
+    <p>
+        Descobre o que está a acontecer na Notebook.
+    </p>
 
-        <h1>
-            Olá 👋
-        </h1>
-
-        <p>
-            Descobre o que está a acontecer na Notebook.
-        </p>
-
-    </section>
+</section>
 
 
-    <!-- CATEGORIAS -->
+<div class="categories">
 
-    <div class="categories">
+    <button class="category active" data-category="Tudo">
+        Tudo
+    </button>
 
-        <button class="category active">
+    <button class="category" data-category="Anime">
+        Anime
+    </button>
+
+    <button class="category" data-category="Desporto">
+        Desporto
+    </button>
+
+</div>
+
+
+<section class="feed" id="feed">
+
+    <article class="post" data-category="Tudo">
+
+        <div class="post-header">
+
+            <div class="avatar">
+                N
+            </div>
+
+            <div>
+                <div class="username">
+                    Notebook
+                </div>
+
+                <div class="time">
+                    Agora
+                </div>
+            </div>
+
+        </div>
+
+        <span class="post-category">
             Tudo
-        </button>
+        </span>
 
-        <button class="category">
-            Anime
-        </button>
+        <p class="post-text">
+```
 
-        <button class="category">
-            Desporto
+Bem-vindo à Notebook.
+
+Este é o início de uma nova forma de partilhar as tuas ideias. </p>
+
+```
+        <div class="post-actions">
+
+            <button class="post-action like-button">
+                ♡ Gostar
+            </button>
+
+            <button class="post-action">
+                💬 Comentar
+            </button>
+
+            <button class="post-action">
+                ↗ Partilhar
+            </button>
+
+        </div>
+
+    </article>
+
+</section>
+```
+
+</main>
+
+<button class="create" id="createButton">
+    +
+</button>
+
+<nav class="bottom-nav">
+
+```
+<button class="active">
+    ⌂
+</button>
+
+<button>
+    ◯
+</button>
+
+<button id="mobileCreate">
+    ＋
+</button>
+
+<button>
+    ♡
+</button>
+
+<button>
+    ●
+</button>
+```
+
+</nav>
+
+<!-- MODAL DE CRIAR PUBLICAÇÃO -->
+
+<div class="modal-overlay" id="modalOverlay">
+
+```
+<div class="modal">
+
+    <div class="modal-header">
+
+        <h2>Criar publicação</h2>
+
+        <button class="close" id="closeModal">
+            ×
         </button>
 
     </div>
 
 
-    <!-- FEED -->
+    <textarea
+        class="post-input"
+        id="postInput"
+        placeholder="O que estás a pensar?"
+    ></textarea>
 
-    <section class="feed">
+
+    <label class="modal-label">
+        Categoria
+    </label>
+
+    <select
+        class="category-select"
+        id="postCategory"
+    >
+
+        <option value="Tudo">
+            Tudo
+        </option>
+
+        <option value="Anime">
+            Anime
+        </option>
+
+        <option value="Desporto">
+            Desporto
+        </option>
+
+    </select>
 
 
-        <!-- PUBLICAÇÃO 1 -->
+    <button
+        class="publish"
+        id="publishButton"
+    >
+        Publicar
+    </button>
 
-        <article class="post">
+</div>
+```
+
+</div>
+
+<script>
+
+const modalOverlay = document.getElementById("modalOverlay");
+const createButton = document.getElementById("createButton");
+const mobileCreate = document.getElementById("mobileCreate");
+const closeModal = document.getElementById("closeModal");
+
+const postInput = document.getElementById("postInput");
+const postCategory = document.getElementById("postCategory");
+const publishButton = document.getElementById("publishButton");
+
+const feed = document.getElementById("feed");
+
+const categories =
+    document.querySelectorAll(".category");
+
+
+/* ABRIR MODAL */
+
+function openModal() {
+
+    modalOverlay.classList.add("show");
+
+    setTimeout(() => {
+        postInput.focus();
+    }, 100);
+
+}
+
+
+/* FECHAR MODAL */
+
+function closeCreateModal() {
+
+    modalOverlay.classList.remove("show");
+
+}
+
+
+/* BOTÕES */
+
+createButton.addEventListener(
+    "click",
+    openModal
+);
+
+mobileCreate.addEventListener(
+    "click",
+    openModal
+);
+
+closeModal.addEventListener(
+    "click",
+    closeCreateModal
+);
+
+
+/* FECHAR AO CLICAR FORA */
+
+modalOverlay.addEventListener(
+    "click",
+    function(event) {
+
+        if (event.target === modalOverlay) {
+            closeCreateModal();
+        }
+
+    }
+);
+
+
+/* CRIAR PUBLICAÇÃO */
+
+publishButton.addEventListener(
+    "click",
+    function() {
+
+        const text =
+            postInput.value.trim();
+
+        const category =
+            postCategory.value;
+
+
+        if (!text) {
+
+            alert(
+                "Escreve alguma coisa antes de publicar."
+            );
+
+            postInput.focus();
+
+            return;
+
+        }
+
+
+        const post =
+            document.createElement("article");
+
+        post.className = "post";
+
+        post.dataset.category = category;
+
+        post.innerHTML = `
 
             <div class="post-header">
 
                 <div class="avatar">
-                    N
+                    H
                 </div>
 
                 <div>
 
                     <div class="username">
-                        Notebook
+                        Hariclene
                     </div>
 
                     <div class="time">
@@ -572,19 +770,15 @@ body::before {
 
             </div>
 
+            <span class="post-category">
+                ${category}
+            </span>
 
-            <p class="post-text">
-
-                Bem-vindo à Notebook.
-                Este é o início de uma nova forma
-                de partilhar as tuas ideias.
-
-            </p>
-
+            <p class="post-text"></p>
 
             <div class="post-actions">
 
-                <button class="post-action">
+                <button class="post-action like-button">
                     ♡ Gostar
                 </button>
 
@@ -596,126 +790,136 @@ body::before {
                     ↗ Partilhar
                 </button>
 
-            </div>
-
-        </article>
-
-
-        <!-- PUBLICAÇÃO 2 -->
-
-        <article class="post">
-
-            <div class="post-header">
-
-                <div class="avatar">
-                    A
-                </div>
-
-                <div>
-
-                    <div class="username">
-                        Anime
-                    </div>
-
-                    <div class="time">
-                        Há 5 min
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <p class="post-text">
-
-                Espaço reservado para uma publicação.
-                Em breve poderás adicionar imagens,
-                vídeos e muito mais.
-
-            </p>
-
-
-            <div class="post-image">
-                Imagem / vídeo
-            </div>
-
-
-            <div class="post-actions">
-
-                <button class="post-action">
-                    ♡ Gostar
-                </button>
-
-                <button class="post-action">
-                    💬 Comentar
-                </button>
-
-                <button class="post-action">
-                    ↗ Partilhar
+                <button class="post-action delete-button">
+                    🗑 Apagar
                 </button>
 
             </div>
 
-        </article>
+        `;
 
 
-    </section>
-
-</main>
-
-
-<!-- BOTÃO CRIAR -->
-
-<button class="create">
-    +
-</button>
+        post.querySelector(".post-text")
+            .textContent = text;
 
 
-<!-- NAVEGAÇÃO MOBILE -->
-
-<nav class="bottom-nav">
-
-    <button class="active">
-        ⌂
-    </button>
-
-    <button>
-        ◯
-    </button>
-
-    <button>
-        ＋
-    </button>
-
-    <button>
-        ♡
-    </button>
-
-    <button>
-        ●
-    </button>
-
-</nav>
+        feed.prepend(post);
 
 
-<script>
+        addPostActions(post);
 
-/* CATEGORIAS */
 
-const categories =
-    document.querySelectorAll(".category");
+        postInput.value = "";
+
+        postCategory.value = "Tudo";
+
+        closeCreateModal();
+
+    }
+);
+
+
+/* AÇÕES DAS PUBLICAÇÕES */
+
+function addPostActions(post) {
+
+    const likeButton =
+        post.querySelector(".like-button");
+
+    const deleteButton =
+        post.querySelector(".delete-button");
+
+
+    if (likeButton) {
+
+        likeButton.addEventListener(
+            "click",
+            function() {
+
+                this.classList.toggle("liked");
+
+                if (this.classList.contains("liked")) {
+
+                    this.textContent =
+                        "♥ Gostei";
+
+                } else {
+
+                    this.textContent =
+                        "♡ Gostar";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    if (deleteButton) {
+
+        deleteButton.addEventListener(
+            "click",
+            function() {
+
+                post.remove();
+
+            }
+        );
+
+    }
+
+}
+
+
+/* ATIVAR LIKE NAS PUBLICAÇÕES EXISTENTES */
+
+document
+    .querySelectorAll(".post")
+    .forEach(post => {
+
+        addPostActions(post);
+
+    });
+
+
+/* FILTRO DE CATEGORIAS */
 
 categories.forEach(button => {
 
     button.addEventListener(
         "click",
-        () => {
+        function() {
 
             categories.forEach(
                 b => b.classList.remove("active")
             );
 
-            button.classList.add("active");
+            this.classList.add("active");
+
+
+            const selected =
+                this.dataset.category;
+
+
+            document
+                .querySelectorAll(".post")
+                .forEach(post => {
+
+                    if (
+                        selected === "Tudo" ||
+                        post.dataset.category === selected
+                    ) {
+
+                        post.style.display = "";
+
+                    } else {
+
+                        post.style.display = "none";
+
+                    }
+
+                });
 
         }
     );
@@ -723,20 +927,43 @@ categories.forEach(button => {
 });
 
 
-/* BOTÃO CRIAR */
+/* PESQUISA */
 
-document
-    .querySelector(".create")
-    .addEventListener(
-        "click",
-        () => {
+const searchInput =
+    document.getElementById("searchInput");
 
-            alert(
-                "Aqui vamos criar a publicação da Notebook."
-            );
+searchInput.addEventListener(
+    "input",
+    function() {
 
-        }
-    );
+        const search =
+            this.value.toLowerCase().trim();
+
+
+        document
+            .querySelectorAll(".post")
+            .forEach(post => {
+
+                const content =
+                    post.textContent.toLowerCase();
+
+
+                if (
+                    content.includes(search)
+                ) {
+
+                    post.style.display = "";
+
+                } else {
+
+                    post.style.display = "none";
+
+                }
+
+            });
+
+    }
+);
 
 </script>
 
