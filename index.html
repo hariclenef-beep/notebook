@@ -1,11 +1,580 @@
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script>
-const SUPABASE_URL = "https://...supabase.co";
-const SUPABASE_KEY = "sb_publishable_ywFz0KDrerYBnzj97Ff2xQ_ttIT-Htg";
+  <title>Notebook</title>
 
-const supabase = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-</script>
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #090909;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      height: 70px;
+      background: linear-gradient(90deg, #090909, #21002f);
+      border-bottom: 1px solid #2d1238;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 25px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #fff, #a855f7);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .search {
+      width: 35%;
+      background: #171717;
+      border: 1px solid #333;
+      border-radius: 25px;
+      padding: 12px 18px;
+      color: white;
+      outline: none;
+    }
+
+    .profile {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7e22ce, #000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 15px 100px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+
+    .category {
+      border: 1px solid #3b174b;
+      background: #151015;
+      color: #ddd;
+      padding: 9px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .category.active,
+    .category:hover {
+      background: #7e22ce;
+      color: white;
+    }
+
+    .create-box {
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 25px;
+    }
+
+    .create-box h2 {
+      margin-bottom: 15px;
+    }
+
+    textarea,
+    select {
+      width: 100%;
+      background: #191919;
+      border: 1px solid #333;
+      color: white;
+      border-radius: 12px;
+      padding: 13px;
+      outline: none;
+      margin-bottom: 12px;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .publish {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 13px;
+      background: linear-gradient(90deg, #7e22ce, #a855f7);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .publish:hover {
+      opacity: .9;
+    }
+
+    .post {
+      background: #111;
+      border: 1px solid #292929;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #9333ea, #111);
+    }
+
+    .username {
+      font-weight: bold;
+    }
+
+    .date {
+      color: #777;
+      font-size: 12px;
+    }
+
+    .post-text {
+      color: #ddd;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 5px 10px;
+      border-radius: 15px;
+      background: #25102e;
+      color: #c084fc;
+      font-size: 12px;
+    }
+
+    .empty {
+      text-align: center;
+      color: #777;
+      padding: 40px;
+    }
+
+    .message {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .bottom-nav {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+
+      header {
+        padding: 0 15px;
+      }
+
+      .logo {
+        font-size: 23px;
+      }
+
+      .search {
+        width: 40%;
+      }
+
+      main {
+        margin-top: 20px;
+      }
+
+      .bottom-nav {
+        position: fixed;
+        display: flex;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 65px;
+        background: #101010;
+        border-top: 1px solid #292929;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 20;
+      }
+
+      .bottom-nav button {
+        background: none;
+        border: none;
+        color: #aaa;
+        font-size: 13px;
+      }
+
+      .bottom-nav button:first-child {
+        color: #a855f7;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="logo">Notebook</div>
+
+    <input
+      class="search"
+      id="search"
+      type="text"
+      placeholder="Pesquisar..."
+      oninput="filtrarPosts()"
+    >
+
+    <div class="profile">N</div>
+  </header>
+
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+
+    <!-- CATEGORIAS -->
+    <div class="categories">
+      <button class="category active" onclick="mudarCategoria('Tudo', this)">
+        Tudo
+      </button>
+
+      <button class="category" onclick="mudarCategoria('Anime', this)">
+        Anime
+      </button>
+
+      <button class="category" onclick="mudarCategoria('Desporto', this)">
+        Desporto
+      </button>
+    </div>
+
+
+    <!-- CRIAR POST -->
+    <section class="create-box">
+
+      <h2>Criar publicação</h2>
+
+      <textarea
+        id="postText"
+        placeholder="O que estás a pensar?"
+      ></textarea>
+
+      <select id="postCategory">
+        <option value="Tudo">Tudo</option>
+        <option value="Anime">Anime</option>
+        <option value="Desporto">Desporto</option>
+      </select>
+
+      <button class="publish" onclick="publicarPost()">
+        + Publicar
+      </button>
+
+      <div id="message" class="message"></div>
+
+    </section>
+
+
+    <!-- POSTS -->
+    <section id="posts">
+      <div class="empty">
+        A carregar publicações...
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- NAVEGAÇÃO MOBILE -->
+  <nav class="bottom-nav">
+    <button onclick="window.scrollTo({top:0, behavior:'smooth'})">
+      🏠<br>Início
+    </button>
+
+    <button onclick="document.getElementById('postText').focus()">
+      ＋<br>Criar
+    </button>
+
+    <button>
+      👤<br>Perfil
+    </button>
+  </nav>
+
+
+  <!-- LIGAÇÃO AO SUPABASE -->
+  <script>
+
+    const SUPABASE_URL = "COLOCA_AQUI_A_TUA_API_URL";
+
+    const SUPABASE_KEY = "COLOCA_AQUI_A_TUA_PUBLISHABLE_KEY";
+
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+
+    let todosPosts = [];
+    let categoriaAtual = "Tudo";
+
+
+    // CARREGAR POSTS
+    async function carregarPosts() {
+
+      const { data, error } = await supabaseClient
+        .from("postagens")
+        .select("*")
+        .order("criado_em", { ascending: false });
+
+
+      if (error) {
+
+        console.error(error);
+
+        document.getElementById("posts").innerHTML = `
+          <div class="empty">
+            Não foi possível carregar as publicações.
+          </div>
+        `;
+
+        return;
+      }
+
+
+      todosPosts = data || [];
+
+      mostrarPosts();
+    }
+
+
+    // MOSTRAR POSTS
+    function mostrarPosts() {
+
+      const container = document.getElementById("posts");
+
+      const pesquisa =
+        document.getElementById("search").value.toLowerCase();
+
+
+      let posts = todosPosts.filter(post => {
+
+        const texto =
+          (post.conteudo || "").toLowerCase();
+
+        const categoria =
+          post.categoria || "Tudo";
+
+
+        const correspondeCategoria =
+          categoriaAtual === "Tudo" ||
+          categoria === categoriaAtual;
+
+
+        const correspondePesquisa =
+          texto.includes(pesquisa);
+
+
+        return correspondeCategoria &&
+               correspondePesquisa;
+
+      });
+
+
+      if (posts.length === 0) {
+
+        container.innerHTML = `
+          <div class="empty">
+            Ainda não existem publicações aqui.
+          </div>
+        `;
+
+        return;
+      }
+
+
+      container.innerHTML = posts.map(post => `
+
+        <article class="post">
+
+          <div class="post-header">
+
+            <div class="avatar"></div>
+
+            <div>
+              <div class="username">
+                ${post.nome_usuario || "Utilizador"}
+              </div>
+
+              <div class="date">
+                ${formatarData(post.criado_em)}
+              </div>
+            </div>
+
+          </div>
+
+          <div class="post-text">
+            ${escaparHTML(post.conteudo || "")}
+          </div>
+
+          <span class="tag">
+            ${post.categoria || "Tudo"}
+          </span>
+
+        </article>
+
+      `).join("");
+    }
+
+
+    // PUBLICAR
+    async function publicarPost() {
+
+      const texto =
+        document.getElementById("postText").value.trim();
+
+      const categoria =
+        document.getElementById("postCategory").value;
+
+      const message =
+        document.getElementById("message");
+
+
+      if (!texto) {
+
+        message.textContent =
+          "Escreve alguma coisa primeiro.";
+
+        return;
+      }
+
+
+      message.textContent = "A publicar...";
+
+
+      const { error } = await supabaseClient
+        .from("postagens")
+        .insert([{
+          conteudo: texto,
+          categoria: categoria,
+          nome_usuario: "Utilizador"
+        }]);
+
+
+      if (error) {
+
+        console.error(error);
+
+        message.textContent =
+          "Erro ao publicar.";
+
+        return;
+      }
+
+
+      document.getElementById("postText").value = "";
+
+      message.textContent =
+        "Publicado com sucesso!";
+
+
+      await carregarPosts();
+
+
+      setTimeout(() => {
+        message.textContent = "";
+      }, 2500);
+    }
+
+
+    // CATEGORIA
+    function mudarCategoria(categoria, botao) {
+
+      categoriaAtual = categoria;
+
+
+      document
+        .querySelectorAll(".category")
+        .forEach(btn => btn.classList.remove("active"));
+
+
+      botao.classList.add("active");
+
+
+      mostrarPosts();
+    }
+
+
+    // PESQUISA
+    function filtrarPosts() {
+
+      mostrarPosts();
+
+    }
+
+
+    // DATA
+    function formatarData(data) {
+
+      if (!data) return "";
+
+      return new Date(data).toLocaleString("pt-PT");
+
+    }
+
+
+    // SEGURANÇA DO TEXTO
+    function escaparHTML(texto) {
+
+      return texto
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    // INICIAR
+    carregarPosts();
+
+  </script>
+
+</body>
+</html>
