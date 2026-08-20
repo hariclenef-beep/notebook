@@ -359,7 +359,7 @@
     // CARREGAR POSTS
     async function carregarPosts() {
 
-      const { data, error } = await supabaseClient
+      const { data, error } = await supabase
         .from("postagens")
         .select("*")
         .order("criado_em", { ascending: false });
